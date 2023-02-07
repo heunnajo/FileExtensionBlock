@@ -40,7 +40,7 @@ public class FileExtensionRepository {
         return result.stream().findAny();
     }
 
-    public void deleteAll(){
+    public void clearAll(){
         em.clear();
     }
 }
