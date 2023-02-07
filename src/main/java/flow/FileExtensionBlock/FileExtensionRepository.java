@@ -1,5 +1,6 @@
 package flow.FileExtensionBlock;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -10,6 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Repository
+@RequiredArgsConstructor
 public class FileExtensionRepository {
 
     @PersistenceContext
@@ -20,7 +22,7 @@ public class FileExtensionRepository {
         return fe.getId();
     }
 
-    public FileExtension find(Long id){
+    public FileExtension findOne(Long id){
         return em.find(FileExtension.class,id);
     }
 
@@ -39,6 +41,11 @@ public class FileExtensionRepository {
                 .getResultList();
         return result.stream().findAny();
     }
+//    public List<FileExtension> findByName(String name) {//ifPresent에서 타입별 특징으로 인한 에러.
+//        return em.createQuery("select m from FileExtension m where m.name = :name", FileExtension.class)
+//                .setParameter("name", name)
+//                .getResultList();
+//    }
 
     public void clearAll(){
         em.clear();
