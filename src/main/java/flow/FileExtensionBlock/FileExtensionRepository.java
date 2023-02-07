@@ -10,4 +10,13 @@ public class FileExtensionRepository {
 
     @PersistenceContext
     private EntityManager em;
+
+    public Long save(FileExtension fe){
+        em.persist(fe);
+        return fe.getId();
+    }
+
+    public FileExtension find(Long id){
+        return em.find(FileExtension.class,id);
+    }
 }
