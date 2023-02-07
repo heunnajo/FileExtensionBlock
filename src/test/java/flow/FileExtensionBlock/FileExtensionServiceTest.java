@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 class FileExtensionServiceTest {
     FileExtensionService fileExtensionService;
@@ -18,10 +19,24 @@ class FileExtensionServiceTest {
 
 //    @AfterEach
 //    public void afterEach(){
-//        fileExtensionRepository.clearStore();
+//        fileExtensionRepository.clearAll();
 //    }
     @Test
-    public void 중복_확장잠명_예외() throws Exception {
+    public void 확장자명_저장() throws Exception{
+        //Given
+        FileExtension f1 = new FileExtension();
+        f1.setExtensionName("hello");
+
+        //When
+        Long saveId = fileExtensionService.insert(f1);
+
+        //Then
+        FileExtension foundFE = fileExtensionRepository.findById(saveId).get();
+        assertEquals(f1.getExtensionName(),foundFE.getExtensionName());
+    }
+
+    @Test
+    public void 중복_확장자명_예외() throws Exception {
         //Given
         FileExtension fe1 = new FileExtension();
         fe1.setExtensionName("abc");
