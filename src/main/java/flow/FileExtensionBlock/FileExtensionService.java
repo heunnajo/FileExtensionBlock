@@ -1,19 +1,26 @@
 package flow.FileExtensionBlock;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 @Transactional
+@RequiredArgsConstructor
 public class FileExtensionService {
+    //생성자 주입:생성자가 하나이면 @Autowired 생략가능.
     private final FileExtensionRepository fileExtensionRepository;
 
-    public FileExtensionService(FileExtensionRepository fileExtensionRepository){
-        this.fileExtensionRepository = fileExtensionRepository;
-    }
+//    public FileExtensionService(FileExtensionRepository fileExtensionRepository) {
+//        this.fileExtensionRepository = fileExtensionRepository;
+//    }
 
     /* 확장자명 추가 */
+    @Transactional
     public Long insert(FileExtension fileExtension){
         validateDuplicateFileExtension(fileExtension);//중복 확장자명 검증
         fileExtensionRepository.save(fileExtension);
