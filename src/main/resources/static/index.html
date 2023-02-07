@@ -5,7 +5,26 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-Hello
-<a href="/hello">hello</a>
+  <h1>파일 확장자 차단</h1>
+  <div>
+    <p>고정 확장자</p>
+    <input type="checkbox"/>bat
+    <input type="checkbox"/>cmd
+    <input type="checkbox"/>com
+    <input type="checkbox"/>cpl
+    <input type="checkbox"/>exe
+    <input type="checkbox"/>scr
+    <input type="checkbox"/>js
+    <p th:text="'안녕하세요. ' + ${data}" ></p>
+  </div>
+  <div>
+    <p>커스텀 확장자</p>
+    <input type="text"/>
+    <button type="submit">등록</button>
+<!--    <a href="/hello">추가</a>-->
+    <div>
+      customed file extensions here...
+    </div>
+  </div>
 </body>
 </html>
