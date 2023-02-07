@@ -17,20 +17,20 @@ public class FileExtension {
     private Long id;
     private String extensionName;
 
-    private List<String> fixed = new ArrayList<>();
-    private List<String> customed = new ArrayList<>();
+    private List<String> fixedList = new ArrayList<>();
+    private List<String> customedList = new ArrayList<>();
 
     /* 비즈니스 로직 */
     public void addFixed(String extensionName){
-        fixed.add(extensionName);
+        fixedList.add(extensionName);
     }
     public void removeFixed(String extensionName){
-        fixed.remove(extensionName);
+        fixedList.remove(extensionName);
     }
     public void addCustomed(String extensionName){
-        customed.add(extensionName);
+        customedList.add(extensionName);
     }
     public void removeCustomed(String extensionName){
-        customed.remove(extensionName);
+        customedList.remove(extensionName);
     }
 }
