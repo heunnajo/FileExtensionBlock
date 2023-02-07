@@ -17,9 +17,12 @@ public class FileExtensionRepository {
     @PersistenceContext
     private EntityManager em;
 
-    public Long save(FileExtension fe){
-        em.persist(fe);
-        return fe.getId();
+    public void save(FileExtension fileExtension){
+        if(fileExtension.getId() == null){
+            em.persist(fileExtension);
+        } else{
+            em.merge(fileExtension);
+        }
     }
 
     public FileExtension findOne(Long id){
@@ -31,13 +34,12 @@ public class FileExtensionRepository {
         return Optional.ofNullable(fe);
     }
     public List<FileExtension> findAll(){
-        return em.createQuery("select m from FileExtension m", FileExtension.class)
-                .getResultList();
+        return em.createQuery("select m from FileExtension m", FileExtension.class).getResultList();
     }
 
-    public Optional<FileExtension> findByName(String name) {
-        List<FileExtension> result = em.createQuery("select m from FileExtension m where m.name = :name", FileExtension.class)
-                .setParameter("name", name)
+    public Optional<FileExtension> findByName(String extensionName) {
+        List<FileExtension> result = em.createQuery("select m from FileExtension m where m.extensionName = :extensionName", FileExtension.class)
+                .setParameter("extensionName", extensionName)
                 .getResultList();
         return result.stream().findAny();
     }
