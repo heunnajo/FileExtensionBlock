@@ -56,6 +56,6 @@ class FileExtensionServiceTest {
         fileExtensionService.insert(fe1);
         IllegalStateException e = assertThrows(IllegalStateException.class,
                 () -> fileExtensionService.insert(fe2));//예외가 발생해야 한다.
-        assertThat(e.getMessage()).isEqualTo("이미 존재하는 확장자입니다.");
+        assertThat(e.getMessage()).isEqualTo("이미 존재하는 확장자명입니다.");
     }
 }
