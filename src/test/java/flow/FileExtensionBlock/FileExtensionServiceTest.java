@@ -3,19 +3,26 @@ package flow.FileExtensionBlock;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
+//@RunWith(SpringRunner.class)
+@SpringBootTest
+@Transactional
 class FileExtensionServiceTest {
-    FileExtensionService fileExtensionService;
-    FileExtensionRepository fileExtensionRepository;
 
-    @BeforeEach
-    public void beforeEach(){
-        fileExtensionRepository = new FileExtensionRepository();
-        fileExtensionService = new FileExtensionService(fileExtensionRepository);
-    }
+    @Autowired FileExtensionService fileExtensionService;
+    @Autowired FileExtensionRepository fileExtensionRepository;
+
+//    @BeforeEach
+//    public void beforeEach(){
+//        fileExtensionRepository = new FileExtensionRepository();
+//        fileExtensionService = new FileExtensionService(fileExtensionRepository);
+//    }
 
 //    @AfterEach
 //    public void afterEach(){
@@ -31,8 +38,9 @@ class FileExtensionServiceTest {
         Long saveId = fileExtensionService.insert(f1);
 
         //Then
-        FileExtension foundFE = fileExtensionRepository.findById(saveId).get();
-        assertEquals(f1.getExtensionName(),foundFE.getExtensionName());
+//        FileExtension foundFE = fileExtensionRepository.findById(saveId).get();
+//        assertEquals(f1.getExtensionName(),foundFE.getExtensionName());
+        assertEquals(f1,fileExtensionRepository.findOne(saveId));
     }
 
     @Test
