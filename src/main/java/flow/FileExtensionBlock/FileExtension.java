@@ -16,6 +16,7 @@ public class FileExtension {
     @Id @GeneratedValue
     private Long id;
     private String extensionName;
+    private boolean isFixed;
 
     private List<String> fixedList = new ArrayList<>();
     private List<String> customedList = new ArrayList<>();
