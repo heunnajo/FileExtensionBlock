@@ -27,6 +27,13 @@ public class FileExtensionService {
         return fileExtension.getId();
     }
 
+    @Transactional
+    public void delete(Long fileExtenstionId){
+        FileExtension fileExtension = fileExtensionRepository.findOne(fileExtenstionId);
+        fileExtension.removeFixed(fileExtension.getExtensionName());
+        fileExtension.removeCustomed(fileExtension.getExtensionName());
+    }
+
     private void validateDuplicateFileExtension(FileExtension fileExtension) {
         fileExtensionRepository.findByName(fileExtension.getExtensionName())
                 .ifPresent(m -> {
