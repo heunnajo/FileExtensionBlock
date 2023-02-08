@@ -33,6 +33,7 @@ public class FileExtensionRepository {
         FileExtension fe = em.find(FileExtension.class, id);
         return Optional.ofNullable(fe);
     }
+
     public List<FileExtension> findAll(){
         return em.createQuery("select m from FileExtension m", FileExtension.class).getResultList();
     }
